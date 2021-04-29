@@ -13,7 +13,7 @@ public enum DrugsTags {
     PHARMACEUTICAL_COMPANY("pharmaceutical-company"),
     HEMATOTROPIC_SUBGROUP("hematotropic-subgroup");
 
-    private String value;
+    private  final String value;
 
     public String getValue() {
         return value;

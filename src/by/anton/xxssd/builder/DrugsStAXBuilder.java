@@ -21,6 +21,9 @@ public class DrugsStAXBuilder {
     private Set<Drug> drugs;
     private XMLInputFactory inputFactory;
 
+    static String s = DrugsTags.PHARMACEUTICAL_COMPANY.getValue();
+    static final String pc = "sdjfnksjndfk";
+
     public DrugsStAXBuilder() {
         inputFactory = XMLInputFactory.newInstance();
         drugs = new HashSet<>();
@@ -120,16 +123,12 @@ public class DrugsStAXBuilder {
     }
 
     private void innerSwitch(String name, Drug drug, XMLStreamReader reader) throws XMLStreamException {
-        switch (name) {
-            case DrugsTags.PHARMACEUTICAL_COMPANY.getValue():
-                drug.setPharmaceuticalGroup(getXMLText(reader));
-                break;
-            case DrugsTags.BRAND_NAME.getValue():
-                drug.setBrandName(getXMLText(reader));
-                break;
-            case DrugsTags.DOSAGE_TYPE.getValue():
-                drug.addUnitDoses(getXMLText(reader));
-                break;
+        if(DrugsTags.PHARMACEUTICAL_COMPANY.getValue() == name) {
+            drug.setPharmaceuticalGroup(getXMLText(reader));
+        } else if (DrugsTags.BRAND_NAME.getValue() == name) {
+            drug.setBrandName(getXMLText(reader));
+        } else if (DrugsTags.DOSAGE_TYPE.getValue() == name) {
+            drug.addUnitDoses(getXMLText(reader));
         }
     }
 
